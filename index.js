@@ -82,7 +82,15 @@ const pipeTest = () => {
 };
 
 pipeTest();
+// @author Ivo Karabashev
+const flatTest = () => {
+  const arr = [1, [2, 3], [4, 5]];
+  const copy = flat(arr);
+  console.log(arr);  // [1, [2, 3], [4, 5]]
+  console.log(copy); // ?
+};
 
+flatTest();
 /*
 *  Composite functions tests
 */

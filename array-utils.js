@@ -178,9 +178,18 @@ const compose = (...fns) => {
     // TODO
   };
 };
+/**
+ * Creates a copy of the array and replaces inner arrays with their own elements one level deep
+ *
+ * @author Ivo Karabashev
+ * @param {array} arr the array to flatten
+ * @return {array} the flattened array
+ */
 
 const flat = (arr) => {
-  // TODO
+
+   return arr.reduce((acc, el) => Array.isArray(el) ? [...acc, ...el] : [...acc, el], []);
+
 };
 
 const flatMap = (mapperFn) => {
