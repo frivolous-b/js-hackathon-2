@@ -87,10 +87,16 @@ const forEach = (fn) => {
     // TODO
   };
 };
-
+/**
+ * Transform each element of the array using a mapping function
+ *
+ * @author Ivo Karabashev
+ * @param {Function} mapperFn the mapping function
+ * @return {Function} inner function
+ */
 const map = (mapperFn) => {
-  return (arr) => {
-    // TODO
+     return (arr) => 
+      { return arr.reduce((acc, el) =>  [...acc, mapperFn(el)], [])
   };
 };
 

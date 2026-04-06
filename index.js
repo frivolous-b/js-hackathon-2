@@ -52,6 +52,14 @@ const removeLastTest = () => { const arr = [1, 2, 3];
     console.log(copy); 
    };
     removeLastTest();
+    // @author Ivo Karabashev
+const mapTest = () => {
+  const arr = [1, 2, 3];
+  const copy = map(x=>x*2)(arr);
+  console.log(arr);  // [1, 2, 3]
+  console.log(copy); // ?
+};
+mapTest();
 
 /*
 *  Composite functions tests
