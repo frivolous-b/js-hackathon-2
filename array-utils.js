@@ -99,15 +99,21 @@ const map = (mapperFn) => {
       { return arr.reduce((acc, el) =>  [...acc, mapperFn(el)], [])
   };
 };
-
+/**
+ * Iterates over elements and returns a new array with elements that pass the predicate
+ *
+ * @author Ivo Karabashev
+ * @param {Function} predicate function that returns true or false for each element
+ * @return {Function} inner function
+ */
 const filter = (predicate) => {
-  return (arr) => {
-    // TODO
+  return (arr) => { return arr.reduce((acc, el) => predicate(el) ? [...acc, el] : acc, []);
+    
   };
 };
 
 const reduce = (fn, initialValue) => {
-  return (arr) => {
+  return (arr) => { 
     // TODO
   };
 };

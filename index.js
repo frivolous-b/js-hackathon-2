@@ -60,6 +60,18 @@ const mapTest = () => {
   console.log(copy); // ?
 };
 mapTest();
+/**
+@author Ivo Karabashev
+@param {Function} predicate function that returns true or false for each element
+*/
+const filterTest = () => {
+  const arr = [1, 2, 3, 4, 5];
+  const copy = filter(x => x > 2)(arr);
+  console.log(arr);  // [1, 2, 3, 4, 5]
+  console.log(copy); // [3, 4, 5]
+};
+
+filterTest();
 
 /*
 *  Composite functions tests
