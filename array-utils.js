@@ -159,10 +159,17 @@ const findIndex = (predicate) => {
 const arrayFrom = ({ length }) => {
   // TODO
 };
+/**
+ * Accepts functions and executes them left to right, passing the result of each to the next
+ *
+ * @author Ivo Karabashev
+ * @param {Function[]} fns the functions to pipe
+ * @return {Function} inner function
+ */
 
 const pipe = (...fns) => {
   return (input) => {
-    // TODO
+    return fns.reduce((acc, el) => el(acc), input);
   };
 };
 

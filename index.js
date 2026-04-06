@@ -72,6 +72,16 @@ const filterTest = () => {
 };
 
 filterTest();
+// @author Ivo Karabashev
+const pipeTest = () => {
+  const double = x => x * 2;
+  const addOne = x => x + 1;
+  
+  const result = pipe(double, addOne)(3);
+  console.log(result); // ?
+};
+
+pipeTest();
 
 /*
 *  Composite functions tests
