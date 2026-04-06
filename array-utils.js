@@ -26,9 +26,16 @@ const removeFirst = (arr) => arr.slice(1); // it does not take additional parame
 const addLast = (element) => { 
   return (arr) => [...arr, element];
 };
+/**
+ * Removes the last element of the array
+ *
+ * @author Ivo Karabashev
+ * @param {array} arr the array to remove from
+ * @return {array} a copy of the array without the last element
+ */
 
 const removeLast = (arr) => {
-  // TODO
+  return arr.slice(0, arr.length - 1);
 };
 
 const keys = (arr) => {

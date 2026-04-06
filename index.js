@@ -45,7 +45,13 @@ const addFirstTest = () => {
 };
 
 // addFirstTest();
-
+// @author Ivo Karabashev 
+const removeLastTest = () => { const arr = [1, 2, 3];
+   const copy = removeLast(arr); 
+   console.log(arr);
+    console.log(copy); 
+   };
+    removeLastTest();
 
 /*
 *  Composite functions tests
