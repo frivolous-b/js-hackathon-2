@@ -1,5 +1,6 @@
 import {
   addFirst,
+   addLast, // added from Ivo Karabashev
   removeFirst,
   removeLast,
   keys,
@@ -23,6 +24,16 @@ import {
 *  Single function tests
 *  Write tests for each function you have implemented
 */
+// @author Ivo Karabashev
+const addLastTest = () => {
+  const arr = [1, 2, 3];
+  const copy = addLast(5)(arr);
+  console.log(arr);  // [1, 2, 3]
+  console.log(copy); // [1, 2, 3, 5]
+};
+
+addLastTest();
+////////////////////////////////////
 
 const addFirstTest = () => {
   const arr = [1, 2, 3];

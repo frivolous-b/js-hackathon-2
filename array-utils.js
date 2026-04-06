@@ -16,11 +16,15 @@ const addFirst = (element) => {
 };
 
 const removeFirst = (arr) => arr.slice(1); // it does not take additional parameters to be splitted
-
-const addLast = (element) => {
-  return (arr) => {
-    // TODO
-  };
+/**
+ * Add an element at the back of the array
+ *
+ * @author Ivo Karabashev
+ * @param {any} element the element to add
+ * @return {addLastFunc} inner function
+ */
+const addLast = (element) => { 
+  return (arr) => [...arr, element];
 };
 
 const removeLast = (arr) => {
