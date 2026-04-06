@@ -91,6 +91,25 @@ const flatTest = () => {
 };
 
 flatTest();
+  // @author Ivo Karabashev
+const reverseTest = () => {
+  const arr = [1, 2, 3];
+  console.log(reverse(arr)); // [3, 2, 1]
+};
+reverseTest();
+// @author Ivo Karabashev
+const fillTest = () => {
+  const arr = [1, 2, 3, 4, 5];
+  console.log(fill(0, 1, 3)(arr)); // [1, 0, 0, 4, 5]
+};
+fillTest();
+
+// @author Ivo Karabashev
+const joinTest = () => {
+  const arr = [1, 2, 3];
+  console.log(join('-')(arr)); // 1-2-3
+};
+joinTest();
 /*
 *  Composite functions tests
 */
@@ -114,7 +133,7 @@ const testOne = () => {
   console.log(piped(startValue));
 };
 
-// testOne();
+ //testOne();
 
 const testTwo = () => {
   const startValue = [
@@ -123,7 +142,7 @@ const testTwo = () => {
     { name: 'Pesho', age: 23 },
     { name: 'Maria', age: 19 },
   ];
-  // its compose so it will run backwards
+  // its compose so it will run backwardsnp
   const composed = compose(
       find(x => x > 10), // 47
       (arr) => [...arr, 9], // [ 47, 9 ]

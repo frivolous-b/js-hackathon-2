@@ -59,15 +59,30 @@ const concat = (arr) => {
 };
 
 // medium
+/**
+ * Creates a reversed copy of the array
+ *
+ * @author Ivo Karabashev
+ * @param {array} arr the array to reverse
+ * @return {array} the reversed array
+ */
 
 const reverse = (arr) => {
-  // TODO
+  
+  return arr.reduce((acc, el) => [el, ...acc], []);
 };
+/**
+ * Converts all elements in array into a string separated by separator
+ *
+ * @author Ivo Karabashev
+ * @param {string} separator the element separator
+ * @return {Function} inner function
+ */
 
 const join = (separator) => {
-  return (arr) => {
-    // TODO
-  };
+  return (arr) => 
+     arr.reduce((acc, el, i) => i === 0 ? `${el}` : `${acc}${separator}${el}`, '');
+
 };
 
 const find = (predicate) => {
@@ -75,11 +90,19 @@ const find = (predicate) => {
     // TODO
   };
 };
+/**
+ * Fills elements of array with value from start up to end
+ *
+ * @author Ivo Karabashev
+ * @param {any} value the value to fill with
+ * @param {number} start the start position
+ * @param {number} end the end position
+ * @return {Function} inner function
+ */
 
 const fill = (value, start, end) => {
-  return (arr) => {
-    // TODO
-  };
+  return (arr) =>  arr.map((el, i) => i >= start && i < end ? value : el);
+
 };
 
 const forEach = (fn) => {
