@@ -37,13 +37,15 @@ const entries = (arr) => {
 
 const slice = (start, end) => {
   return (arr) => {
-    // TODO
+    return arr.reduce((acc, el, index) => {
+      return index >= start && index < end ? [...acc, el] : acc;
+    }, [])
   };
 };
 
 const concat = (arr) => {
   return (innerArr) => {
-    // TODO
+      return [...innerArr,...arr];
   };
 };
 
@@ -103,13 +105,13 @@ const reduceRight = (fn, initialValue) => {
 
 const some = (predicate) => {
   return (arr) => {
-    // TODO
+    return arr.filter((el) => predicate(el)).length > 0;
   };
 };
 
 const every = (predicate) => {
   return (arr) => {
-    // TODO
+    return arr.filter((el) => predicate(el)).length === arr.length;
   };
 };
 
@@ -134,7 +136,7 @@ const findIndex = (predicate) => {
 // hard
 
 const arrayFrom = ({ length }) => {
-  // TODO
+  return [...Array(length)];
 };
 
 const pipe = (...fns) => {
@@ -155,7 +157,9 @@ const flat = (arr) => {
 
 const flatMap = (mapperFn) => {
   return (arr) => {
-    // TODO
+    return arr.reduce((acc, element) => {
+      return [...acc, ...mapperFn(element)];
+    }, []);
   };
 };
 
