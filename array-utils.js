@@ -29,8 +29,7 @@ const removeLast = (arr) => {
  * @returns {number[]} returns a new array with the valid indexes
  */
 const keys = (arr) => {
-  // Lyudmil
-const keys = (arr) => arr.map((_, index) => index);
+arr.map((_, index) => index);
 };
 //==================================================
 /**
@@ -42,13 +41,12 @@ const keys = (arr) => arr.map((_, index) => index);
  */
 
 const entries = (arr) => {
-  // Lyudmil
-  const entries = (arr) => arr.map((element, index) => [index, element]);
+   arr.map((element, index) => [index, element]);
 };
 //================================
 const slice = (start, end) => {
   return (arr) => {
-    const entries = (arr) => arr.map((element, index) => [index, element]);
+     arr.map((element, index) => [index, element]);
   };
 };
 
