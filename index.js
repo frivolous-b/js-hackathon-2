@@ -175,7 +175,7 @@ const testOne = () => {
   console.log(piped(startValue));
 };
 
- //testOne();
+ testOne();
 
 const testTwo = () => {
   const startValue = [
@@ -255,8 +255,7 @@ const testThree = () => {
 
   console.log(piped(startValue));
 };
-
-// testThree();
+ testThree();
 const keysTest = () => {
   const arr = ['a', 'b', 'c', 'd'];
 

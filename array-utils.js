@@ -1,52 +1,56 @@
 // easy
-//=====================================
-/**LYUDMIL
+
+/**
  * Add an element at front of the array
  *
  * @param {any} element the element to add
  * @return {addFirstFunc} inner function
  */
-const addFirst = (element) => {  
+const addFirst = (element) => {
+  /**
+   * @function addFirstFunc
+   * @param {array} array an array to add element into
+   * @return {array} a copy of the array with the element added
+   */
   return (arr) => [element, ...arr];
 };
 
 const removeFirst = (arr) => arr.slice(1); // it does not take additional parameters to be splitted
-
-const addLast = (element) => {
-  return (arr) => {
-  //todogi
-  };
+/**
+ * Add an element at the back of the array
+ *
+ * @author Ivo Karabashev
+ * @param {any} element the element to add
+ * @return {addLastFunc} inner function
+ */
+const addLast = (element) => { 
+  return (arr) => [...arr, element];
 };
+/**
+ * Removes the last element of the array
+ *
+ * @author Ivo Karabashev
+ * @param {array} arr the array to remove from
+ * @return {array} a copy of the array without the last element
+ */
 
 const removeLast = (arr) => {
-  // TODO
-};cd
-/**
- * Get the array's valid indexes
- *
- * @author Lyudmil
- * @param {any[]} arr the array to get the indexes from
- * @returns {number[]} returns a new array with the valid indexes
- */
-const keys = (arr) => {
-arr.map((_, index) => index);
+  return arr.slice(0, arr.length - 1);
 };
-//==================================================
-/**
- * Get the array's entries as [index, element]
- *
- * @author Lyudmil
- * @param {any[]} arr the array to get the entries from
- * @returns {Array<[number, any]>} returns a new array with [index, element] pairs
- */
+
+const keys = (arr) => arr.map((_, index) => index);
+  
+
 
 const entries = (arr) => {
-   arr.map((element, index) => [index, element]);
+ arr.map((element, index) => [index, element]);
 };
-//================================
+
 const slice = (start, end) => {
   return (arr) => {
-     arr.map((element, index) => [index, element]);
+    return arr.reduce((acc, el, index) => {
+      return index >= start && index < end ? [...acc, el] : acc;
+    }, []);
   };
 };
 
@@ -57,15 +61,30 @@ const concat = (arr) => {
 };
 
 // medium
+/**
+ * Creates a reversed copy of the array
+ *
+ * @author Ivo Karabashev
+ * @param {array} arr the array to reverse
+ * @return {array} the reversed array
+ */
 
 const reverse = (arr) => {
-  // TODO
+  
+  return arr.reduce((acc, el) => [el, ...acc], []);
 };
+/**
+ * Converts all elements in array into a string separated by separator
+ *
+ * @author Ivo Karabashev
+ * @param {string} separator the element separator
+ * @return {Function} inner function
+ */
 
 const join = (separator) => {
-  return (arr) => {
-    // TODO
-  };
+  return (arr) => 
+     arr.reduce((acc, el, i) => i === 0 ? `${el}` : `${acc}${separator}${el}`, '');
+
 };
 
 const find = (predicate) => {
@@ -73,11 +92,19 @@ const find = (predicate) => {
     // TODO
   };
 };
+/**
+ * Fills elements of array with value from start up to end
+ *
+ * @author Ivo Karabashev
+ * @param {any} value the value to fill with
+ * @param {number} start the start position
+ * @param {number} end the end position
+ * @return {Function} inner function
+ */
 
 const fill = (value, start, end) => {
-  return (arr) => {
-    // TODO
-  };
+  return (arr) =>  arr.map((el, i) => i >= start && i < end ? value : el);
+
 };
 
 const forEach = (fn) => {
@@ -85,42 +112,41 @@ const forEach = (fn) => {
     // TODO
   };
 };
-
+/**
+ * Transform each element of the array using a mapping function
+ *
+ * @author Ivo Karabashev
+ * @param {Function} mapperFn the mapping function
+ * @return {Function} inner function
+ */
 const map = (mapperFn) => {
-  return (arr) => {
-    // TODO
+     return (arr) => 
+      { return arr.reduce((acc, el) =>  [...acc, mapperFn(el)], [])
   };
 };
-
+/**
+ * Iterates over elements and returns a new array with elements that pass the predicate
+ *
+ * @author Ivo Karabashev
+ * @param {Function} predicate function that returns true or false for each element
+ * @return {Function} inner function
+ */
 const filter = (predicate) => {
   return (arr) => {
-    // TODO
+    return arr.reduce((acc, el, index) => predicate(el, index) ? [...acc, el] : acc, []);
   };
 };
-//==================================================
-/**
- * Reduce array elements to a single value
- *
- * @author Lyudmil
- * @param {(acc: any, el: any) => any} fn reducer function
- * @param {any} initialValue initial accumulator value
- * @returns {(arr: any[]) => any} closure that reduces the array
- */
-const reduce = (fn, initialValue) => {
-  return (arr) => {
-    const iterate = (index, acc) => {
-      if (index >= arr.length) {
-        return acc;
-      }
 
+const reduce = (fn, initialValue) => {
+  return (arr) => { 
+    const iterate = (index, acc) => {
+      if (index >= arr.length) return acc;
       return iterate(index + 1, fn(acc, arr[index]));
     };
-
     return iterate(0, initialValue);
-    //LD
   };
 };
-//======================================================
+
 const reduceRight = (fn, initialValue) => {
   return (arr) => {
     // TODO
@@ -150,61 +176,53 @@ const indexOf = (searchedElement) => {
     // TODO
   };
 };
-//=======================================
-/**
- * Find the first element that matches the predicate or return null
- *
- * @author Lyudmil
- * @param {(el: any, index: number) => boolean} predicate function used to test elements
- * @returns {(arr: any[]) => any | null} closure returning the first matching element
- */
 
 const findIndex = (predicate) => {
   return (arr) => {
-    const search = (index) => {
-      if (index >= arr.length) {
-        return null;
-      }
-
-      return predicate(arr[index], index) ? arr[index] : search(index + 1);
-    }
-    return search(0);// Lyudmil
+    // TODO
   };
 };
 
 // hard
 
-const arrayFrom = ({ length }) => {
-  // TODO
-};
+const arrayFrom = ({ length }) => [...Array(length)];
+  
+
+/**
+ * Accepts functions and executes them left to right, passing the result of each to the next
+ *
+ * @author Ivo Karabashev
+ * @param {Function[]} fns the functions to pipe
+ * @return {Function} inner function
+ */
 
 const pipe = (...fns) => {
   return (input) => {
-    // TODO
+    return fns.reduce((acc, el) => el(acc), input);
   };
 };
 
-//===============================
-/**
- * Compose functions from right to left
- *
- * @author Lyudmil
- * @param {...Function} fns functions to compose
- * @returns {(input: any) => any} closure that runs the functions in reverse order
- */
 const compose = (...fns) => {
   return (input) => {
     const run = (index, value) => {
       if (index < 0) return value;
       return run(index - 1, fns[index](value));
     };
-
-    return run(fns.length - 1, input); //Lyudmil
+    return run(fns.length - 1, input);
   };
 };
+/**
+ * Creates a copy of the array and replaces inner arrays with their own elements one level deep
+ *
+ * @author Ivo Karabashev
+ * @param {array} arr the array to flatten
+ * @return {array} the flattened array
+ */
 
 const flat = (arr) => {
-  // TODO
+
+   return arr.reduce((acc, el) => Array.isArray(el) ? [...acc, ...el] : [...acc, el], []);
+
 };
 
 const flatMap = (mapperFn) => {
@@ -212,23 +230,13 @@ const flatMap = (mapperFn) => {
     // TODO
   };
 };
-/**
- * Group array elements by a grouping function
- *
- * @author Lyudmil
- * @param {(el: any) => any} groupingFn function returning the group key
- * @returns {(arr: any[]) => object} closure that groups elements in an object
- */
+
 const groupBy = (groupingFn) => {
   return (arr) => {
-    return arr.reduce((acc, el) => {
+   return arr.reduce((acc, el) => {
       const key = groupingFn(el);
-
-      return {
-        ...acc,
-        [key]: [...(acc[key] || []), el],
-      };
-    }, {});//Lyudmil
+      return { ...acc, [key]: [...(acc[key] || []), el] };
+    }, {});
   };
 };
 
