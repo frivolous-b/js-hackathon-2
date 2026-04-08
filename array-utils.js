@@ -2,7 +2,7 @@
 
 /**
  * Add an element at front of the array
- *
+ * @author  who LD
  * @param {any} element the element to add
  * @return {addFirstFunc} inner function
  */
@@ -14,7 +14,13 @@ const addFirst = (element) => {
    */
   return (arr) => [element, ...arr];
 };
-
+/**=======================================================
+ * Removes the first element of the array
+ *
+ * @author Lyudmil Drenkov
+ * @param {array} arr the array to remove from
+ * @return {array} a copy of the array without the first element
+ */
 const removeFirst = (arr) => arr.slice(1); // it does not take additional parameters to be splitted
 /**
  * Add an element at the back of the array
@@ -38,13 +44,27 @@ const removeLast = (arr) => {
   return arr.slice(0, arr.length - 1);
 };
 
+/**=============================================================
+ * Returns an array containing the indexes of the elements in the array
+ *
+ * @author Lyudmil Drenkov
+ * @param {array} arr the array to extract keys from
+ * @return {array} an array of the indexes of the elements
+ */
 const keys = (arr) => arr.map((_, index) => index);
-  
+ //ld^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
 
-
+/**==========================================================
+ * Returns an array of [index, element] pairs for each element in the array
+ *
+ * @author Lyudmil Drenkov
+ * @param {array} arr the array to extract entries from
+ * @return {array} an array of [index, element] pairs
+ */
 const entries = (arr) => {
- arr.map((element, index) => [index, element]);
+ return arr.map((element, index) => [index, element]);
 };
+//ld^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 /**
  * Creates a copy of an array from start to end index
@@ -112,11 +132,24 @@ const join = (separator) => {
 
 };
 
+/**==========================================================
+ * Finds the first element in an array that satisfies the predicate
+ *
+ * @author Lyudmil Drenkov
+ * @param {Function} predicate function that accepts an element and index and returns boolean
+ * @return {Function} inner function
+ */
 const find = (predicate) => {
   return (arr) => {
-    // TODO
+    const found = arr.reduce(
+      (acc, el, index) => (acc === null && predicate(el, index) ? el : acc),
+      null
+    );
+
+    return found;
   };
 };
+//ld^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 /**
  * Fills elements of array with value from start up to end
  *
@@ -132,9 +165,19 @@ const fill = (value, start, end) => {
 
 };
 
+/**=======================================================
+ * Calls a function with each element of the array
+ *
+ * @author Lyudmil Drenkov
+ * @param {Function} fn the function to call with each element
+ * @return {Function} inner function
+ */
 const forEach = (fn) => {
   return (arr) => {
-    // TODO
+    arr.reduce((_, el, index) => {
+      fn(el, index);
+      return undefined;
+    }, undefined);
   };
 };
 /**
@@ -161,7 +204,14 @@ const filter = (predicate) => {
     return arr.reduce((acc, el, index) => predicate(el, index) ? [...acc, el] : acc, []);
   };
 };
-
+/**=======================================================
+ * Applies a reducer function to the array and returns the accumulated result
+ *
+ * @author Lyudmil Drenkov
+ * @param {Function} fn the reducer function
+ * @param {any} initialValue the initial accumulator value
+ * @return {Function} inner function
+ */
 const reduce = (fn, initialValue) => {
   return (arr) => { 
     const iterate = (index, acc) => {
@@ -171,10 +221,23 @@ const reduce = (fn, initialValue) => {
     return iterate(0, initialValue);
   };
 };
-
+//ld^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/**=======================================================
+ * Applies a reducer function to the array from right to left
+ * and returns the accumulated result
+ *
+ * @author Lyudmil Drenkov
+ * @param {Function} fn the reducer function
+ * @param {any} initialValue the initial accumulator value
+ * @return {Function} inner function
+ */
 const reduceRight = (fn, initialValue) => {
   return (arr) => {
-    // TODO
+    const iterate = (index, acc) => {
+      if (index < 0) return acc;
+      return iterate(index - 1, fn(acc, arr[index]));
+    };
+    return iterate(arr.length - 1, initialValue);
   };
 };
 
@@ -214,21 +277,50 @@ const every = (predicate) => {
   };
 };
 
+/**=======================================================
+ * Returns true if the searched element exists in the array
+ *
+ * @author Lyudmil Drenkov
+ * @param {any} element the element to search for
+ * @return {Function} inner function
+ */
 const includes = (element) => {
   return (arr) => {
-    // TODO
+    return arr.reduce((found, el) => found || el === element, false);
   };
 };
 
+/**=======================================================
+ * Returns the first index of the searched element in the array
+ *
+ * @author Lyudmil Drenkov
+ * @param {any} searchedElement the element to search for
+ * @return {Function} inner function
+ */
 const indexOf = (searchedElement) => {
   return (arr) => {
-    // TODO
+    return arr.reduce(
+      (foundIndex, el, index) =>
+        foundIndex === -1 && el === searchedElement ? index : foundIndex,
+      -1
+    );
   };
 };
 
+/**=======================================================
+ * Returns the index of the first element that satisfies the predicate
+ *
+ * @author Lyudmil Drenkov
+ * @param {Function} predicate function that accepts an element and index and returns boolean
+ * @return {Function} inner function
+ */
 const findIndex = (predicate) => {
   return (arr) => {
-    // TODO
+    return arr.reduce(
+      (foundIndex, el, index) =>
+        foundIndex === -1 && predicate(el, index) ? index : foundIndex,
+      -1
+    );
   };
 };
 
@@ -258,7 +350,13 @@ const pipe = (...fns) => {
     return fns.reduce((acc, el) => el(acc), input);
   };
 };
-
+/**+++++++++++++++++++++++++++++++++++++++++++
+ * Accepts functions and executes them right to left, passing the result of each to the next
+ *
+ * @author Lyudmil Drenkov
+ * @param {Function[]} fns the functions to compose
+ * @return {Function} inner function
+ *///ld
 const compose = (...fns) => {
   return (input) => {
     const run = (index, value) => {
@@ -268,6 +366,7 @@ const compose = (...fns) => {
     return run(fns.length - 1, input);
   };
 };
+//ld^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 /**
  * Creates a copy of the array and replaces inner arrays with their own elements one level deep
  *
@@ -301,7 +400,13 @@ const flatMap = (mapperFn) => {
     }, []);
   };
 };
-
+/**============================
+ * Groups the elements of an array by the result of a grouping function
+ *
+ * @author Lyudmil Drenkov
+ * @param {Function} groupingFn the function used to determine the group key
+ * @return {Function} inner function
+ */
 const groupBy = (groupingFn) => {
   return (arr) => {
    return arr.reduce((acc, el) => {
@@ -310,7 +415,7 @@ const groupBy = (groupingFn) => {
     }, {});
   };
 };
-
+//ld^^^^^^^^^^^^^^^^^^^^^^^^^^
 export {
   addFirst,
   removeFirst,
