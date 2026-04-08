@@ -46,7 +46,20 @@ const entries = (arr) => {
  arr.map((element, index) => [index, element]);
 };
 
+/**
+ * Creates a copy of an array from start to end index
+ *
+ * @author Dimitar Markov
+ * @param {number} start the start index to copy from
+ * @param {number} end the end index to copy to (not included)
+ * @return {sliceFunc} inner function
+ */
 const slice = (start, end) => {
+  /**
+   * @function sliceFunc
+   * @param {array} arr the array to slice
+   * @return {array} a copy of the array from start to end
+   */
   return (arr) => {
     return arr.reduce((acc, el, index) => {
       return index >= start && index < end ? [...acc, el] : acc;
@@ -54,9 +67,21 @@ const slice = (start, end) => {
   };
 };
 
+/**
+ * Concatenates the elements from one array with the elements of another
+ *
+ * @author Dimitar Markov
+ * @param {array} arr the array to concatenate with
+ * @return {concatFunc} inner function
+ */
 const concat = (arr) => {
+  /**
+   * @function concatFunc
+   * @param {array} innerArr the array to concatenate into
+   * @return {array} a new array with all elements from both arrays
+   */
   return (innerArr) => {
-    // TODO
+    return [...innerArr, ...arr];
   };
 };
 
@@ -153,15 +178,39 @@ const reduceRight = (fn, initialValue) => {
   };
 };
 
+/**
+ * Returns true if at least one element passes the predicate condition
+ *
+ * @author Dimitar Markov
+ * @param {function} predicate a function that accepts an element and returns a boolean
+ * @return {someFunc} inner function
+ */
 const some = (predicate) => {
+  /**
+   * @function someFunc
+   * @param {array} arr the array to iterate over
+   * @return {boolean} true if at least one element passes, otherwise false
+   */
   return (arr) => {
-    // TODO
+    return arr.filter((el) => predicate(el)).length > 0;
   };
 };
 
+/**
+ * Returns true if all elements pass the predicate condition
+ *
+ * @author Dimitar Markov
+ * @param {function} predicate a function that accepts an element and returns a boolean
+ * @return {everyFunc} inner function
+ */
 const every = (predicate) => {
+  /**
+   * @function everyFunc
+   * @param {array} arr the array to iterate over
+   * @return {boolean} true if all elements pass, otherwise false
+   */
   return (arr) => {
-    // TODO
+    return arr.filter((el) => predicate(el)).length === arr.length;
   };
 };
 
@@ -185,8 +234,16 @@ const findIndex = (predicate) => {
 
 // hard
 
-const arrayFrom = ({ length }) => [...Array(length)];
-  
+/**
+ * Creates an array from an object by using its length property
+ *
+ * @author Dimitar Markov
+ * @param {{ length: number }} obj an object with a length property
+ * @return {undefined[]} an array filled with undefined values
+ */
+const arrayFrom = ({ length }) => {
+  return [...Array(length)];
+};
 
 /**
  * Accepts functions and executes them left to right, passing the result of each to the next
@@ -225,9 +282,23 @@ const flat = (arr) => {
 
 };
 
+/**
+ * Maps each element using a mapping function and flattens the result
+ *
+ * @author Dimitar Markov
+ * @param {function} mapperFn a function that accepts an element and returns an array
+ * @return {flatMapFunc} inner function
+ */
 const flatMap = (mapperFn) => {
+  /**
+   * @function flatMapFunc
+   * @param {array} arr the array to iterate over
+   * @return {array} the mapped and flattened array
+   */
   return (arr) => {
-    // TODO
+    return arr.reduce((acc, element) => {
+      return [...acc, ...mapperFn(element)];
+    }, []);
   };
 };
 
