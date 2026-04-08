@@ -14,13 +14,13 @@ const removeFirst = (arr) => arr.slice(1); // it does not take additional parame
 
 const addLast = (element) => {
   return (arr) => {
-  //todo
+  //todogi
   };
 };
 
 const removeLast = (arr) => {
   // TODO
-};
+};cd
 /**
  * Get the array's valid indexes
  *
@@ -48,19 +48,13 @@ const entries = (arr) => {
 //================================
 const slice = (start, end) => {
   return (arr) => {
-<<<<<<< HEAD
     const entries = (arr) => arr.map((element, index) => [index, element]);
-=======
-    return arr.reduce((acc, el, index) => {
-      return index >= start && index < end ? [...acc, el] : acc;
-    }, [])
->>>>>>> bdb15fba83fb622876c7dd65c420e09c5c3ec68e
   };
 };
 
 const concat = (arr) => {
   return (innerArr) => {
-      return [...innerArr,...arr];
+    // TODO
   };
 };
 
@@ -137,13 +131,13 @@ const reduceRight = (fn, initialValue) => {
 
 const some = (predicate) => {
   return (arr) => {
-    return arr.filter((el) => predicate(el)).length > 0;
+    // TODO
   };
 };
 
 const every = (predicate) => {
   return (arr) => {
-    return arr.filter((el) => predicate(el)).length === arr.length;
+    // TODO
   };
 };
 
@@ -183,7 +177,7 @@ const findIndex = (predicate) => {
 // hard
 
 const arrayFrom = ({ length }) => {
-  return [...Array(length)];
+  // TODO
 };
 
 const pipe = (...fns) => {
@@ -217,9 +211,7 @@ const flat = (arr) => {
 
 const flatMap = (mapperFn) => {
   return (arr) => {
-    return arr.reduce((acc, element) => {
-      return [...acc, ...mapperFn(element)];
-    }, []);
+    // TODO
   };
 };
 /**
