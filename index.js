@@ -141,3 +141,56 @@ const testThree = () => {
 };
 
 // testThree();
+const keysTest = () => {
+  const arr = ['a', 'b', 'c', 'd'];
+
+  console.log(keys(arr)); // [0, 1, 2, 3]
+};
+
+// keysTest();
+const reduceTest = () => {
+  const arr = [10, 20, 30, 40];
+
+  console.log(reduce((acc, el) => acc + el, 0)(arr)); // 100
+};
+
+// reduceTest();
+const findTest = () => {
+  const arr = [5, 12, 18, 20, 25];
+
+  console.log(find((x) => x > 15)(arr)); // 18
+};
+
+// findTest();
+const composeTest = () => {
+  const composed = compose(
+    (x) => x + 1,
+    (x) => x * 2
+  );
+
+  console.log(composed(5)); // 11
+};
+
+// composeTest();
+const groupByTest = () => {
+  const people = [
+    { name: 'Ivan', age: 20 },
+    { name: 'Pesho', age: 21 },
+    { name: 'Maria', age: 20 },
+  ];
+
+  console.log(groupBy((person) => person.age)(people));
+  /*
+  {
+    '20': [
+      { name: 'Ivan', age: 20 },
+      { name: 'Maria', age: 20 }
+    ],
+    '21': [
+      { name: 'Pesho', age: 21 }
+    ]
+  }
+  */
+};
+
+// groupByTest();
