@@ -1,5 +1,6 @@
 import {
   addFirst,
+   addLast, // added from Ivo Karabashev
   removeFirst,
   removeLast,
   keys,
@@ -27,6 +28,16 @@ import {
 *  Single function tests
 *  Write tests for each function you have implemented
 */
+// @author Ivo Karabashev
+const addLastTest = () => {
+  const arr = [1, 2, 3];
+  const copy = addLast(5)(arr);
+  console.log(arr);  // [1, 2, 3]
+  console.log(copy); // [1, 2, 3, 5]
+};
+
+addLastTest();
+////////////////////////////////////
 
 const addFirstTest = () => {
   const arr = [1, 2, 3];
@@ -38,6 +49,71 @@ const addFirstTest = () => {
 };
 
 // addFirstTest();
+// @author Ivo Karabashev 
+const removeLastTest = () => { const arr = [1, 2, 3];
+   const copy = removeLast(arr); 
+   console.log(arr);
+    console.log(copy); 
+   };
+    removeLastTest();
+    // @author Ivo Karabashev
+const mapTest = () => {
+  const arr = [1, 2, 3];
+  const copy = map(x=>x*2)(arr);
+  console.log(arr);  // [1, 2, 3]
+  console.log(copy); // ?
+};
+mapTest();
+/**
+@author Ivo Karabashev
+@param {Function} predicate function that returns true or false for each element
+*/
+const filterTest = () => {
+  const arr = [1, 2, 3, 4, 5];
+  const copy = filter(x => x > 2)(arr);
+  console.log(arr);  // [1, 2, 3, 4, 5]
+  console.log(copy); // [3, 4, 5]
+};
+
+filterTest();
+// @author Ivo Karabashev
+const pipeTest = () => {
+  const double = x => x * 2;
+  const addOne = x => x + 1;
+  
+  const result = pipe(double, addOne)(3);
+  console.log(result); // ?
+};
+
+pipeTest();
+// @author Ivo Karabashev
+const flatTest = () => {
+  const arr = [1, [2, 3], [4, 5]];
+  const copy = flat(arr);
+  console.log(arr);  // [1, [2, 3], [4, 5]]
+  console.log(copy); // ?
+};
+
+flatTest();
+  // @author Ivo Karabashev
+const reverseTest = () => {
+  const arr = [1, 2, 3];
+  console.log(reverse(arr)); // [3, 2, 1]
+};
+reverseTest();
+// @author Ivo Karabashev
+const fillTest = () => {
+  const arr = [1, 2, 3, 4, 5];
+  console.log(fill(0, 1, 3)(arr)); // [1, 0, 0, 4, 5]
+};
+fillTest();
+
+// @author Ivo Karabashev
+const joinTest = () => {
+  const arr = [1, 2, 3];
+  console.log(join('-')(arr)); // 1-2-3
+};
+joinTest();
 
 const sliceTest = () => {
   console.log(slice(1, 3)([1, 2, 3, 4, 5]));
@@ -99,7 +175,7 @@ const testOne = () => {
   console.log(piped(startValue));
 };
 
-// testOne();
+ //testOne();
 
 const testTwo = () => {
   const startValue = [
@@ -108,7 +184,7 @@ const testTwo = () => {
     { name: 'Pesho', age: 23 },
     { name: 'Maria', age: 19 },
   ];
-  // its compose so it will run backwards
+  // its compose so it will run backwardsnp
   const composed = compose(
     find(x => x > 10), // 47
     (arr) => [...arr, 9], // [ 47, 9 ]

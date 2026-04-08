@@ -16,15 +16,26 @@ const addFirst = (element) => {
 };
 
 const removeFirst = (arr) => arr.slice(1); // it does not take additional parameters to be splitted
-
-const addLast = (element) => {
-  return (arr) => {
-    // TODO
-  };
+/**
+ * Add an element at the back of the array
+ *
+ * @author Ivo Karabashev
+ * @param {any} element the element to add
+ * @return {addLastFunc} inner function
+ */
+const addLast = (element) => { 
+  return (arr) => [...arr, element];
 };
+/**
+ * Removes the last element of the array
+ *
+ * @author Ivo Karabashev
+ * @param {array} arr the array to remove from
+ * @return {array} a copy of the array without the last element
+ */
 
 const removeLast = (arr) => {
-  // TODO
+  return arr.slice(0, arr.length - 1);
 };
 
 const keys = (arr) => {
@@ -50,15 +61,30 @@ const concat = (arr) => {
 };
 
 // medium
+/**
+ * Creates a reversed copy of the array
+ *
+ * @author Ivo Karabashev
+ * @param {array} arr the array to reverse
+ * @return {array} the reversed array
+ */
 
 const reverse = (arr) => {
-  // TODO
+  
+  return arr.reduce((acc, el) => [el, ...acc], []);
 };
+/**
+ * Converts all elements in array into a string separated by separator
+ *
+ * @author Ivo Karabashev
+ * @param {string} separator the element separator
+ * @return {Function} inner function
+ */
 
 const join = (separator) => {
-  return (arr) => {
-    // TODO
-  };
+  return (arr) => 
+     arr.reduce((acc, el, i) => i === 0 ? `${el}` : `${acc}${separator}${el}`, '');
+
 };
 
 const find = (predicate) => {
@@ -66,11 +92,19 @@ const find = (predicate) => {
     // TODO
   };
 };
+/**
+ * Fills elements of array with value from start up to end
+ *
+ * @author Ivo Karabashev
+ * @param {any} value the value to fill with
+ * @param {number} start the start position
+ * @param {number} end the end position
+ * @return {Function} inner function
+ */
 
 const fill = (value, start, end) => {
-  return (arr) => {
-    // TODO
-  };
+  return (arr) =>  arr.map((el, i) => i >= start && i < end ? value : el);
+
 };
 
 const forEach = (fn) => {
@@ -78,21 +112,33 @@ const forEach = (fn) => {
     // TODO
   };
 };
-
+/**
+ * Transform each element of the array using a mapping function
+ *
+ * @author Ivo Karabashev
+ * @param {Function} mapperFn the mapping function
+ * @return {Function} inner function
+ */
 const map = (mapperFn) => {
-  return (arr) => {
-    // TODO
+     return (arr) => 
+      { return arr.reduce((acc, el) =>  [...acc, mapperFn(el)], [])
   };
 };
-
+/**
+ * Iterates over elements and returns a new array with elements that pass the predicate
+ *
+ * @author Ivo Karabashev
+ * @param {Function} predicate function that returns true or false for each element
+ * @return {Function} inner function
+ */
 const filter = (predicate) => {
-  return (arr) => {
-    // TODO
+  return (arr) => { return arr.reduce((acc, el) => predicate(el) ? [...acc, el] : acc, []);
+    
   };
 };
 
 const reduce = (fn, initialValue) => {
-  return (arr) => {
+  return (arr) => { 
     // TODO
   };
 };
@@ -138,10 +184,17 @@ const findIndex = (predicate) => {
 const arrayFrom = ({ length }) => {
   return [...Array(length)];
 };
+/**
+ * Accepts functions and executes them left to right, passing the result of each to the next
+ *
+ * @author Ivo Karabashev
+ * @param {Function[]} fns the functions to pipe
+ * @return {Function} inner function
+ */
 
 const pipe = (...fns) => {
   return (input) => {
-    // TODO
+    return fns.reduce((acc, el) => el(acc), input);
   };
 };
 
@@ -150,9 +203,18 @@ const compose = (...fns) => {
     // TODO
   };
 };
+/**
+ * Creates a copy of the array and replaces inner arrays with their own elements one level deep
+ *
+ * @author Ivo Karabashev
+ * @param {array} arr the array to flatten
+ * @return {array} the flattened array
+ */
 
 const flat = (arr) => {
-  // TODO
+
+   return arr.reduce((acc, el) => Array.isArray(el) ? [...acc, ...el] : [...acc, el], []);
+
 };
 
 const flatMap = (mapperFn) => {
